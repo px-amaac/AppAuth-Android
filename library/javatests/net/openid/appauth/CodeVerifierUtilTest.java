@@ -14,7 +14,7 @@
 
 package net.openid.appauth;
 
-import static junit.framework.Assert.fail;
+import static org.junit.Assert.fail;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.security.SecureRandom;
