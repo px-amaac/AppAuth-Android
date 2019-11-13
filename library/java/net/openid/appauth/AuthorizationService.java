@@ -599,7 +599,12 @@ public class AuthorizationService {
                 wr.write(postData);
                 wr.flush();
 
-                is = conn.getInputStream();
+                if (conn.getResponseCode() >= HttpURLConnection.HTTP_OK
+                        && conn.getResponseCode() < HttpURLConnection.HTTP_MULT_CHOICE) {
+                    is = conn.getInputStream();
+                } else {
+                    is = conn.getErrorStream();
+                }
                 String response = Utils.readInputStream(is);
                 return new JSONObject(response);
             } catch (IOException ex) {
